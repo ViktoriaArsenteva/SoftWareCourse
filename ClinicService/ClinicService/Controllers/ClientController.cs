@@ -1,5 +1,5 @@
-﻿using ClinicService.Models;
-using ClinicService.Models.Requests;
+﻿using ClinicService.Models.Requests;
+using ClinicService.Models;
 using ClinicService.Services;
 using ClinicService.Services.Impl;
 using Microsoft.AspNetCore.Http;
@@ -9,18 +9,21 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace ClinicService.Controllers
 {
     [Route("api/[controller]")]
+    //[Route("api/[controller]")]
     [ApiController]
     public class ClientController : ControllerBase
     {
+
         private readonly IClientRepository _clientRepository;
-        public ClientController(IClientRepository clientRepository) 
+
+        public ClientController(IClientRepository clientRepository)
         {
             _clientRepository = clientRepository;
         }
 
         [HttpPost("create")]
         [SwaggerOperation(OperationId = "ClientCreate")]
-        public ActionResult<int> Create([FromBody] CreateClientRequest createRequest) 
+        public ActionResult<int> Create([FromBody] CreateClientRequest createRequest)
         {
             int res = _clientRepository.Create(new Client
             {
@@ -44,7 +47,7 @@ namespace ClinicService.Controllers
                 SurName = updateRequest.SurName,
                 FirstName = updateRequest.FirstName,
                 Patronymic = updateRequest.Patronymic,
-                Birthday = updateRequest.Birthday,
+                Birthday = updateRequest.Birthday
             });
             return Ok(res);
         }
@@ -64,8 +67,9 @@ namespace ClinicService.Controllers
             return Ok(_clientRepository.GetAll());
         }
 
+
         [HttpGet("get/{clientId}")]
-        [SwaggerOperation(OperationId = "ClienGetById")]
+        [SwaggerOperation(OperationId = "ClientGetById")]
         public ActionResult<Client> GetById([FromRoute] int clientId)
         {
             return Ok(_clientRepository.GetById(clientId));

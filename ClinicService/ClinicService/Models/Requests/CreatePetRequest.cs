@@ -1,4 +1,4 @@
-namespace ClinicService.Models.Requests
+﻿namespace ClinicService.Models.Requests
 {
     public class CreatePetRequest
     {

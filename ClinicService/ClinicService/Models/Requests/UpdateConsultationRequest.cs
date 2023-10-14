@@ -1,6 +1,6 @@
-﻿namespace ClinicService.Models
+﻿namespace ClinicService.Models.Requests
 {
-    public class Consultation
+    public class UpdateConsultationRequest
     {
         public int ConsultationId { get; set; }
 
